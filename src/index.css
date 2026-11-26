@@ -1,0 +1,160 @@
+/* src/index.css
+   Aquí vive el "cómo se ve" de la app, con nombres que dicen "qué es".
+   Bootstrap sigue aportando botones, tablas, alertas, inputs, spinner y barra de progreso. */
+
+body {
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
+
+/* ---------- Estructura general ---------- */
+
+/* Ancho máximo compartido por la barra superior y el contenido */
+.app-container {
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 0 1rem 3rem;
+}
+
+.app-nav {
+  background-color: #212529;
+  padding: 0.75rem 0;
+  margin-bottom: 1.5rem;
+}
+
+.app-nav .app-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 0;
+}
+
+.app-nav a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.app-nav .brand {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.app-nav .links {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Título de página con un botón a la derecha */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.page-header h2 {
+  font-size: 1.25rem;
+  margin: 0;
+}
+
+/* Caja blanca con sombra: formularios, tabla y avisos */
+.panel {
+  background-color: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  padding: 1.25rem;
+}
+
+.panel h2,
+.panel h3 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+/* ---------- Componentes ---------- */
+
+.loading {
+  text-align: center;
+  margin: 3rem 0;
+  color: #6c757d;
+}
+
+/* La tabla ocupa todo el panel, sin relleno extra */
+.table-panel {
+  padding: 0;
+  overflow-x: auto;
+}
+
+.table-panel .table {
+  margin: 0;
+}
+
+.table-panel td {
+  vertical-align: middle;
+}
+
+.progress-col {
+  width: 35%;
+}
+
+.progress {
+  height: 20px;
+}
+
+/* Ancho mínimo para que se lea el porcentaje aunque el avance sea muy bajo */
+.progress-bar {
+  min-width: 2.5rem;
+}
+
+/* Celda de botones Editar / Eliminar */
+.actions {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.actions .btn + .btn {
+  margin-left: 0.5rem;
+}
+
+/* Campo de formulario: el label envuelve a su input */
+.form-field {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.form-field input {
+  margin-top: 0.5rem;
+}
+
+.form-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* ---------- Inicio ---------- */
+
+.module-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.module-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #dee2e6;
+}
+
+.module-card.active {
+  border-color: #0d6efd;
+}
+
+.module-card.active h3 {
+  color: #0d6efd;
+}
+
+.module-card p {
+  flex-grow: 1;
+  font-size: 0.875rem;
+  color: #6c757d;
+}
