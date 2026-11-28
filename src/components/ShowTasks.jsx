@@ -2,7 +2,33 @@ import {Link} from 'react-router'
 import ErrorAlert from './common/ErrorAlert'
 import TaskRow from './TaskRow'
 import Loading from './common/Loading'
+import { getTasks, deleteTask } from '../services/taskService'
+import { useEffect, useState } from 'react'
+
 const ShowTasks = () => {
+
+  const [tasks, setTasks] = useState([])
+  const [loading, setloading] = useState(true)
+  const [error, setError] = useState(null)
+
+  useEffect(() => {
+    const getAllTasks = async () => {
+      try {
+        setTasks( await getTasks())
+      } catch (err) {
+        setError(err.message)
+      } finally {
+        setloading(false)
+      }
+    }
+
+    getAllTasks()
+    //console.log(tasks); // datos crudos
+    
+  }, [])
+
+  const isEmpty = !loading && tasks.length === 0
+
   return (
     <>
       {/* header */}
@@ -11,13 +37,13 @@ const ShowTasks = () => {
         <Link to="/tasks/create" className="btn btn-success">+ Nueva tarea</Link>
       </header>
       {/* Componente que me pone un error*/}
-      <ErrorAlert message={"Error"} />
+      <ErrorAlert message={error} />
       
       {/* Cargando */}
-      {/* <Loading message="Cargando tareas desde la API..." /> */}
+      {/* {loading && <Loading message="Cargando tareas desde la API..." />} */}
       
       {/* La API no tiene datos: No hay tareas registradas */}
-      <p className="alert alert-info">No hay tareas registradas</p>
+      {isEmpty && <p className="alert alert-info">No hay tareas registradas</p>}
 
       {/* Generar una tabla con las atareas si tiene datos*/}
       <div className="panel tabla-panel">
@@ -30,7 +56,9 @@ const ShowTasks = () => {
             </tr>
           </thead>
           <tbody>
-            <TaskRow />
+            { tasks.map( (task) => (
+              <TaskRow key={task.id} task={task} />
+            ) ) }
           </tbody>
         </table>
       </div>

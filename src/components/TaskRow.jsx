@@ -1,15 +1,15 @@
 import { Link } from 'react-router'
 import ProgressBar from './common/ProgressBar'
 
-const TaskRow = ({ id }) => {
+const TaskRow = ({ task }) => {
   return (
     <tr>
-      <td>Tarea de prueba</td>
+      <td>{task.title}</td>
       <td>
-        <ProgressBar progress={50}/>
+        <ProgressBar progress={task.progress}/>
       </td>
       <td className="actions">
-        <Link to={`/task/edit/${id}`} className="btn btn-warning btn-sm">Editar</Link>
+        <Link to={`/task/edit/${task.id}`} className="btn btn-warning btn-sm">Editar</Link>
         <Link to={`/tasks`} className="btn btn-danger btn-sm">Eliminar</Link>
       </td>
     </tr>
